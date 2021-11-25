@@ -293,7 +293,6 @@ fuzzymatch(void)
 	calcoffsets();
 }
 
-
 static void
 match(void)
 {
@@ -425,6 +424,11 @@ keypress(XKeyEvent *ev)
 		case XK_J: /* fallthrough */
 		case XK_j: ksym = XK_Down;      break;
 		case XK_k: ksym = XK_Up;        break;
+		case XK_l:
+      puts(sel->text);
+			cleanup();
+      exit(0);
+     break;
 		case XK_m: /* fallthrough */
 		case XK_M: ksym = XK_Return; ev->state &= ~ControlMask; break;
 		case XK_n: ksym = XK_Down;      break;
@@ -752,7 +756,6 @@ setup(void)
 	                    CopyFromParent, CopyFromParent, CopyFromParent,
 	                    CWOverrideRedirect | CWBackPixel | CWEventMask, &swa);
 	XSetClassHint(dpy, win, &ch);
-
 
 	/* input methods */
 	if ((xim = XOpenIM(dpy, NULL, NULL, NULL)) == NULL)
